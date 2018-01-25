@@ -8,6 +8,8 @@ public class Main {
 	
 	String fileToLoad;
 	String [] dataFromFile = new String[3];
+	int totalSum1 = 0;
+	int totalSum2 = 0;
 		
 	public static void main(String[] args) {
 		
@@ -30,6 +32,7 @@ public class Main {
 	public void displayMenu() {
 		System.out.println("1) To open a file");
 		System.out.println("2) To modify a file");
+		System.out.println("3) For total sum");
 		
 		String optionSelected = readingFromUser();
 		
@@ -46,6 +49,9 @@ public class Main {
 			writeInFile();
 			printingOnScreen();
 			
+		}
+		if (optionSelected.equals("3")) {
+			getTotalSum();
 		}
 		else {
 			displayMenu();
@@ -78,10 +84,13 @@ public class Main {
 			
 			for (int i = 0; i < dataFromFile.length ; i++) {
 				
-				dataFromFile[i] = br.readLine();
+				int balance = Integer.parseInt(br.readLine());
+				totalSum1 += balance;
+				totalSum2 = totalSum2 + balance;
 				
 			}
-
+			System.out.println(totalSum1);
+			System.out.println(totalSum2);
 			br.close();
 			
 		} catch (Exception e) {
@@ -117,6 +126,30 @@ public class Main {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	public void getTotalSum() {
+		
+		for (int i = 0 ; i < 5; i++) {
+			
+			try {
+				BufferedReader br = new BufferedReader (new FileReader("C:\\users\\apont\\Desktop\\" + i + ".txt"));
+				
+				int balance = Integer.parseInt(br.readLine());
+				totalSum1 += balance;
+				totalSum2 = totalSum2 + balance;
+				br.close();
+				
+				
+			} catch (Exception e) {
+				System.out.println("I can't find that file");
+			}
+			
+		}
+		
+		System.out.println(totalSum1);
+		System.out.println(totalSum2);
 		
 	}
 
